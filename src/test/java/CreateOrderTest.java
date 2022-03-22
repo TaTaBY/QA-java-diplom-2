@@ -10,17 +10,15 @@ import java.net.HttpURLConnection;
 import static org.junit.Assert.*;
 
 public class CreateOrderTest extends BaseTest {
-    private static UserClient userClient;
-    private static User user;
     private static String accessToken;
     private static Order order;
     private static OrderClient orderClient;
 
 
     @BeforeClass
-    public static void SetUp () {
-        userClient  = new UserClient();
-        user = User.getRandom();
+    public static void SetUp() {
+        UserClient userClient = new UserClient();
+        User user = User.getRandom();
         accessToken = userClient.createSuccessAndGetAccessToken(user);
         orderClient = new OrderClient();
     }
@@ -31,7 +29,7 @@ public class CreateOrderTest extends BaseTest {
 
         boolean isCreatedOrder = orderClient.createOrderWithAuthorization(order, accessToken);
 
-        assertTrue(isCreatedOrder);
+        assertTrue("Order is not created", isCreatedOrder);
 
     }
 
@@ -41,7 +39,7 @@ public class CreateOrderTest extends BaseTest {
 
         boolean isCreatedOrder = orderClient.createOrderWithoutAuthorization(order);
 
-        assertTrue(isCreatedOrder);
+        assertFalse("Order is created", isCreatedOrder);
 
     }
 

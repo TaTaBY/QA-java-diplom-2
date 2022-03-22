@@ -13,12 +13,22 @@ public class UpdateUserTest extends BaseTest {
 
 
     @BeforeClass
-    public static void SetUp () {
-        userClient  = new UserClient();
+    public static void SetUp() {
+        userClient = new UserClient();
         user = User.getRandom();
         accessToken = userClient.createSuccessAndGetAccessToken(user);
     }
 
+
+    @Test
+    public void userUpdateSuccessWithAuthAndWithAllMandatoryFields() {
+        user = User.getRandom();
+
+        boolean isUpdated = userClient.updateWithAuthorization(user, accessToken);
+
+        assertTrue("User is not updated", isUpdated);
+
+    }
 
     @Test
     public void userUpdateSuccessWithAuthAndWithoutPasswordField() {
@@ -26,7 +36,7 @@ public class UpdateUserTest extends BaseTest {
 
         boolean isUpdated = userClient.updateWithAuthorization(user, accessToken);
 
-        assertTrue(isUpdated);
+        assertFalse("User is updated", isUpdated);
 
     }
 
@@ -36,7 +46,7 @@ public class UpdateUserTest extends BaseTest {
 
         boolean isUpdated = userClient.updateWithAuthorization(user, accessToken);
 
-        assertTrue(isUpdated);
+        assertFalse("User is updated", isUpdated);
 
     }
 
@@ -46,7 +56,7 @@ public class UpdateUserTest extends BaseTest {
 
         boolean isUpdated = userClient.updateWithAuthorization(user, accessToken);
 
-        assertTrue(isUpdated);
+        assertFalse("User is updated", isUpdated);
 
     }
 

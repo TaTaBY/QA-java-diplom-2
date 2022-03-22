@@ -16,12 +16,12 @@ public class User {
         this.name = name;
     }
 
-    public User() {
-    }
-
     public User(String password, String name) {
         this.password = password;
         this.name = name;
+    }
+
+    public User() {
     }
 
     public String getEmail() {
@@ -36,16 +36,16 @@ public class User {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
@@ -88,13 +88,19 @@ public class User {
         Faker faker = Faker.instance();
         String email = faker.internet().emailAddress();
         String name = RandomStringUtils.randomAlphabetic(10);
-        return new User(email, name);
+        User user = new User();
+        user.setEmail(email);
+        user.setName(name);
+        return user;
     }
 
     public static User getRandomWithoutName() {
         Faker faker = Faker.instance();
         String email = faker.internet().emailAddress();
         String password = RandomStringUtils.randomAlphabetic(10);
-        return new User(email, password);
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        return user;
     }
 }

@@ -11,8 +11,8 @@ import static io.restassured.RestAssured.given;
 
 
 public class UserClient {
-    @Step ("Success create user {user}")
-    public boolean createSuccess (User user) {
+    @Step("Success create user {user}")
+    public boolean createSuccess(User user) {
         return given()
                 .body(user)
                 .when()
@@ -24,8 +24,8 @@ public class UserClient {
                 .path("success");
     }
 
-    @Step ("Success create user {user}")
-    public String createSuccessAndGetAccessToken (User user) {
+    @Step("Success create user {user}")
+    public String createSuccessAndGetAccessToken(User user) {
         return given()
                 .body(user)
                 .when()
@@ -37,8 +37,8 @@ public class UserClient {
                 .path("accessToken");
     }
 
-    @Step ("Failed create user {user}")
-    public String createFailed (User user) {
+    @Step("Failed create user {user}")
+    public String createFailed(User user) {
         return given()
                 .body(user)
                 .when()
@@ -50,8 +50,8 @@ public class UserClient {
                 .path("message");
     }
 
-    @Step ("Success login as {userCredentials}")
-    public boolean loginSuccess (UserCredentials userCredentials) {
+    @Step("Success login as {userCredentials}")
+    public boolean loginSuccess(UserCredentials userCredentials) {
         return given()
                 .body(userCredentials)
                 .when()
@@ -63,15 +63,15 @@ public class UserClient {
                 .path("success");
     }
 
-    @Step ("Fail login as non-exist user - {userCredentials}")
-    public Response loginFailed (UserCredentials userCredentials) {
-        return  given()
+    @Step("Fail login as non-exist user - {userCredentials}")
+    public Response loginFailed(UserCredentials userCredentials) {
+        return given()
                 .body(userCredentials)
                 .when()
                 .post(EndPoints.USER_LOGIN);
     }
 
-    @Step ("Success update {user} with authorization")
+    @Step("Success update {user} with authorization")
     public boolean updateWithAuthorization(User user, String accessToken) {
         return given()
                 .headers("authorization", accessToken)
@@ -85,7 +85,7 @@ public class UserClient {
                 .path("success");
     }
 
-    @Step ("Failed update {user} without authorization")
+    @Step("Failed update {user} without authorization")
     public String updateWithoutAuthorization(User user) {
         return given()
                 .body(user)

@@ -12,17 +12,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class GetOrdersForCurrentUserTest extends BaseTest {
-    private static UserClient userClient;
-    private static User user;
     private static String accessToken;
-    private static Order order;
     private static OrderClient orderClient;
 
 
     @BeforeClass
-    public static void SetUp () {
-        userClient  = new UserClient();
-        user = User.getRandom();
+    public static void SetUp() {
+        UserClient userClient = new UserClient();
+        User user = User.getRandom();
         accessToken = userClient.createSuccessAndGetAccessToken(user);
         orderClient = new OrderClient();
     }
@@ -30,9 +27,9 @@ public class GetOrdersForCurrentUserTest extends BaseTest {
 
     @Test
     public void getOrdersOfCurrentUserWithAuthorization() {
-        order = Order.getIngredients();
+       Order order = Order.getIngredients();
 
-        orderClient.createOrderWithAuthorization(order,accessToken);
+        orderClient.createOrderWithAuthorization(order, accessToken);
         Response responseOrdersOfCurrentUser = orderClient.getOrdersForCurrentUserWithAuthorization(accessToken);
 
         int actualStatusCode = responseOrdersOfCurrentUser.getStatusCode();
@@ -40,7 +37,7 @@ public class GetOrdersForCurrentUserTest extends BaseTest {
         int expectedStatusCode = HttpURLConnection.HTTP_OK;
 
         assertEquals(expectedStatusCode, actualStatusCode);
-        assertTrue(actualResult);
+        assertTrue("", actualResult);
 
     }
 

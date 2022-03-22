@@ -5,17 +5,13 @@ import support.OrderClient;
 
 import java.util.Arrays;
 
-public class Order{
-    private String [] ingredients;
-    private static OrderClient orderClient;
+public class Order {
+    final private String[] ingredients;
 
     public Order(String[] ingredients) {
         this.ingredients = ingredients;
     }
 
-    public Order() {
-
-    }
 
     public static Order getIngredients() {
         OrderClient orderClient = new OrderClient();

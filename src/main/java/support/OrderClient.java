@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 
 
 public class OrderClient {
-    @Step ("Success create order with authorization")
+    @Step("Success create order with authorization")
     public boolean createOrderWithAuthorization(Order order, String accessToken) {
         return given()
                 .headers("authorization", accessToken)
@@ -25,7 +25,7 @@ public class OrderClient {
                 .path("success");
     }
 
-    @Step ("Success create order without authorization")
+    @Step("Success create order without authorization")
     public boolean createOrderWithoutAuthorization(Order order) {
         return given()
                 .body(order)
@@ -38,7 +38,7 @@ public class OrderClient {
                 .path("success");
     }
 
-    @Step ("Failed create order without ingredients")
+    @Step("Failed create order without ingredients")
     public String createOrderWithoutIngredients(Order order) {
         return given()
                 .body(order)
@@ -51,7 +51,7 @@ public class OrderClient {
                 .path("message");
     }
 
-    @Step ("Failed create order without correct hash of ingredients")
+    @Step("Failed create order without correct hash of ingredients")
     public int createOrderWithoutCorrectHashOfIngredients(Order order) {
         return given()
                 .body(order)
@@ -62,7 +62,7 @@ public class OrderClient {
                 .statusCode();
     }
 
-    @Step ("Get orders for current user  with authorization")
+    @Step("Get orders for current user  with authorization")
     public Response getOrdersForCurrentUserWithAuthorization(String accessToken) {
         return given()
                 .headers("authorization", accessToken)
@@ -70,7 +70,7 @@ public class OrderClient {
                 .get(EndPoints.GET_ORDERS_FOR_CURRENT_USER);
     }
 
-    @Step ("Get orders for current user  without authorization")
+    @Step("Get orders for current user  without authorization")
     public String getOrdersForCurrentUserWithoutAuthorization() {
         return given()
                 .when()
@@ -81,7 +81,7 @@ public class OrderClient {
     }
 
     public String getRandomHashOfIngredients() {
-        int random = RandomUtils.nextInt(0,14);
+        int random = RandomUtils.nextInt(0, 14);
         return given()
                 .when()
                 .get(EndPoints.INGREDIENTS_GET)

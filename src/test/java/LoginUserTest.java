@@ -14,8 +14,8 @@ public class LoginUserTest extends BaseTest {
     private User user;
 
     @BeforeClass
-    public static void SetUp () {
-        userClient  = new UserClient();
+    public static void SetUp() {
+        userClient = new UserClient();
     }
 
 

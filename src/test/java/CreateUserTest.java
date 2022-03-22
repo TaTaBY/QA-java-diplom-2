@@ -9,17 +9,17 @@ public class CreateUserTest extends BaseTest {
     private static UserClient userClient;
 
     @BeforeClass
-    public static void SetUp () {
-        userClient  = new UserClient();
+    public static void SetUp() {
+        userClient = new UserClient();
     }
 
     @Test
-    public void  userCanBeCreatedWithValidData() {
+    public void userCanBeCreatedWithValidData() {
         User user = User.getRandom();
 
         boolean isUserCreated = userClient.createSuccess(user);
 
-        assertTrue(isUserCreated);
+        assertTrue("User not created", isUserCreated);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class CreateUserTest extends BaseTest {
     public void userCannotBeCreatedWithoutPassword() {
         User user = User.getRandomWithoutPassword();
 
-        String  actualErrorMessage = userClient.createFailed(user);
+        String actualErrorMessage = userClient.createFailed(user);
         String expectedErrorMessage = "Email, password and name are required fields";
 
         assertEquals(expectedErrorMessage, actualErrorMessage);
